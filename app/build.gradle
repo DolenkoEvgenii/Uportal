@@ -38,7 +38,7 @@ android {
         debug {
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
-                    outputFileName = "MvpTemplate-v-${variant.versionName}.apk"
+                    outputFileName = "Uportal-v-${variant.versionName}.apk"
                 }
             }
         }
@@ -72,22 +72,6 @@ android {
     }
 }
 
-configurations.all {
-    resolutionStrategy.eachDependency { details ->
-       /* def requested = details.requested
-        if (requested.group == 'com.android.support') {
-            if (!requested.name.startsWith("multidex")) {
-                details.useVersion supportLibraryVersion
-            }
-        }
-
-        if (requested.group == 'com.android.support') {
-            if (requested.name.startsWith("multidex")) {
-                details.useVersion multidexVersion
-            }
-        }*/
-    }
-}
 
 apply from: 'dependencies.gradle'
 
