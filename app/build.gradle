@@ -1,0 +1,118 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+/*
+apply plugin: 'io.fabric'
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+*/
+
+android {
+    compileSdkVersion 28
+
+    dexOptions {
+        maxProcessCount 4
+        preDexLibraries false
+        javaMaxHeapSize "8g"
+    }
+
+    defaultConfig {
+        applicationId "etu.uportal"
+        minSdkVersion 18
+        targetSdkVersion 28
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "MvpTemplate-v-${variant.versionName}.apk"
+                }
+            }
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { details ->
+       /* def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion supportLibraryVersion
+            }
+        }
+
+        if (requested.group == 'com.android.support') {
+            if (requested.name.startsWith("multidex")) {
+                details.useVersion multidexVersion
+            }
+        }*/
+    }
+}
+
+apply from: 'dependencies.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation supportLibs
+    implementation googleLibs
+    implementation networkLibs
+    implementation rxJavaLibs
+
+    implementation moxyLibs
+    implementation otherLibs
+
+    debugImplementation debugLibs
+    releaseImplementation releaseLibs
+
+    /*implementation(answers){
+        transitive = true
+    }
+    implementation (fabricCrashlytics){
+        transitive = true
+    }*/
+
+    kapt annotationProcessorLibs
+}
+//apply plugin: 'com.google.gms.google-services'

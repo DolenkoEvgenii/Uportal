@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <exclude
+        domain="sharedpref"
+        path="cache_pref.xml" />
+    <exclude
+        domain="sharedpref"
+        path="settings_pref.xml" />
+    <exclude
+        domain="sharedpref"
+        path="cache_photo_pref.xml" />
+</full-backup-content>

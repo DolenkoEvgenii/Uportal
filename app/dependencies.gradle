@@ -1,0 +1,206 @@
+ext {
+    versions = [
+            androidX          : '1.0.0',
+            appCompat         : '1.0.2',
+            multiDex          : '2.0.1',
+
+            firebaseCore      : '16.0.7',
+            firebase          : '17.3.4',
+
+            rxKotlin          : '2.3.0',
+            rxAndroid         : '2.1.0',
+            rxJava            : '2.2.6',
+            rxPermissions     : '0.10.2',
+            rxPreferences     : '2.0.0',
+            rxBinding         : '3.0.0-alpha2',
+            rxLifecycle       : '3.0.0',
+
+            materialDialog    : '2.0.0',
+            drawer            : '6.1.2',
+            flexBox           : '1.0.0',
+            sweetAlert        : '1.5.6',
+            circleIndicator   : '1.2.2@aar',
+            gestureViews      : '2.5.2',
+            toasty            : '1.4.0',
+            segmentControl    : '1.0.6',
+            circleImageView   : '3.0.0',
+
+            youtubePlayer     : '9.0.0',
+            videoPlayer       : '6.4.1',
+            videoView         : '1.1.0@aar',
+
+            moshi             : '1.5.0',
+            okHttp            : '3.12.1',
+            retrofit          : '2.5.0',
+
+            dagger            : '2.21',
+            butterKnife       : '10.0.0',
+
+            smartLocation     : '3.3.3',
+            rxLocSettings     : '1.1.0',
+
+            moxy              : '1.5.5',
+            eventBus          : '3.1.1',
+            cicerone          : '5.0.0',
+            logger            : '2.2.0',
+            inputMask         : '4.0.0',
+            recyclerHeader    : '0.4.3@aar',
+            dali              : '0.3.5',
+
+            glide             : '4.8.0',
+
+            leakcanary        : '1.6.3',
+            mockitoKotlin     : '1.5.0',
+
+            crashlytics       : '2.9.4@aar',
+            answers           : '1.4.6@aar',
+
+            filePicker        : '2.0.4.2',
+            easyImage         : '2.1.0',
+            imagePicker       : '1.3.0',
+            matisse           : '0.5.2-beta4',
+            datePicker        : '4.1.2',
+            dateRangePicker   : '2.1.2'
+    ]
+
+    supportDeps = [
+            appcompatV7       : "androidx.appcompat:appcompat:$versions.appCompat",
+            design            : "com.google.android.material:material:$versions.androidX",
+            cardView          : "androidx.cardview:cardview:$versions.androidX",
+            recyclerView      : "androidx.recyclerview:recyclerview:$versions.androidX",
+            supportAnnotation : "androidx.annotation:annotation:$versions.androidX",
+            supportCoreUtils  : "androidx.legacy:legacy-support-core-utils:$versions.androidX",
+            gridLayout        : "androidx.gridlayout:gridlayout:$versions.androidX",
+            multiDex          : "androidx.multidex:multidex:$versions.multiDex"
+    ]
+
+    rxBinding = [
+            platform       : "com.jakewharton.rxbinding3:rxbinding:$versions.rxBinding",
+            kotlin         : "com.jakewharton.rxbinding3:rxbinding-support-v4-kotlin:$versions.rxBinding",
+            core           : "com.jakewharton.rxbinding3:rxbinding-core:$versions.rxBinding",
+            appcompatV7    : "com.jakewharton.rxbinding3:rxbinding-appcompat:$versions.rxBinding",
+            recyclerView   : "com.jakewharton.rxbinding3:rxbinding-recyclerview:$versions.rxBinding",
+            swipeRefresh   : "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:$versions.rxBinding",
+            viewpager      : "com.jakewharton.rxbinding3:rxbinding-viewpager:$versions.rxBinding",
+            material       : "com.jakewharton.rxbinding3:rxbinding-material:$versions.rxBinding"
+    ]
+    rxLifecycle = [
+            core      : "com.trello.rxlifecycle3:rxlifecycle:$versions.rxLifecycle",
+            android   : "com.trello.rxlifecycle3:rxlifecycle-components-preference:$versions.rxLifecycle",
+            kotlin    : "com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:$versions.rxLifecycle"
+    ]
+    rx = [
+            rxKotlin        : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
+            rxAndroid       : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+            rxJava          : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+            rxPreferences   : "com.f2prateek.rx.preferences2:rx-preferences:$versions.rxPreferences",
+            rxRermissions   : "com.github.tbruyelle:rxpermissions:$versions.rxPermissions"
+    ] + rxBinding + rxLifecycle
+
+    retrofit = [
+            retrofit        : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            rxAdapter       : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+            gsonAdapter     : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+            moshiConverter  : "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+    ]
+    okHttp = [
+            logger  : "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+            okhttp  : "com.squareup.okhttp3:okhttp:$versions.okHttp",
+    ]
+
+    location = [
+            smartLocation   : "io.nlopez.smartlocation:library:$versions.smartLocation",
+            rxLocSettings   : "com.github.jetradarmobile:android-rxlocationsettings:$versions.rxLocSettings"
+    ]
+
+    imagePickers = [
+            //easyImage     : "com.github.jkwiecien:EasyImage:$versions.easyImage",
+            //imagePicker   : "com.github.nguyenhoanglam:ImagePicker:$versions.imagePicker"
+            matisse           : "com.zhihu.android:matisse:$versions.matisse"
+    ]
+
+    videoPlayers = [
+            youtubePlayer   : "com.pierfrancescosoffritti.androidyoutubeplayer:core:$versions.youtubePlayer",
+            videoPlayer     : "cn.jzvd:jiaozivideoplayer:$versions.videoPlayer",
+            videoView       : "com.linsea:universalvideoview:$versions.videoView"
+    ]
+
+    moshi = [
+            moshi: "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+    ]
+
+    moxy = [
+            core       : "com.arello-mobile:moxy:$versions.moxy"
+            //appcompat  : "com.arello-mobile:moxy-app-compat:$versions.moxy"
+    ]
+
+    firebaseLibs = [
+            firebaseCore        : "com.google.firebase:firebase-core:$versions.firebaseCore",
+            firebaseMessaging   : "com.google.firebase:firebase-messaging:$versions.firebase"
+    ]
+
+    onlyDebug = [
+            chuck   : "com.readystatesoftware.chuck:library:1.1.0"
+    ]
+    onlyRelease = [
+            chuckNoOp   : "com.readystatesoftware.chuck:library-no-op:1.1.0",
+    ]
+
+    // Ui
+    segmentControl = "info.hoang8f:android-segmented:$versions.segmentControl"
+    circleImageView = "de.hdodenhof:circleimageview:$versions.circleImageView"
+    drawer = "com.mikepenz:materialdrawer:$versions.drawer"
+    toasty = "com.github.GrenderG:Toasty:$versions.toasty"
+    materialDialogs = "com.afollestad.material-dialogs:core:$versions.materialDialog"
+    sweetAlert = "com.github.f0ris.sweetalert:library:$versions.sweetAlert"
+    inputMask = "com.redmadrobot:inputmask:$versions.inputMask"
+    dali = "at.favre.lib:dali:$versions.dali"
+    recyclerHeader = "com.timehop.stickyheadersrecyclerview:library:$versions.recyclerHeader"
+    circleIndicator = "me.relex:circleindicator:$versions.circleIndicator"
+    flexbox = "com.google.android:flexbox:$versions.flexBox"
+    gestureView = "com.alexvasilkov:gesture-views:$versions.gestureViews"
+
+    // Utility
+    eventBus = "org.greenrobot:eventbus:$versions.eventBus"
+    loggerLib = "com.orhanobut:logger:$versions.logger"
+    cicerone = "ru.terrakok.cicerone:cicerone:$versions.cicerone"
+
+    dagger = "com.google.dagger:dagger:$versions.dagger"
+    daggerCompiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+
+    glide = "com.github.bumptech.glide:glide:$versions.glide"
+    glideCompiler = "com.github.bumptech.glide:compiler:$versions.glide"
+
+    leakCannary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
+
+    // Fabric
+    answers = "com.crashlytics.sdk.android:answers:$versions.answers"
+    fabricCrashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics"
+
+    // Moxy
+    moxyLibs = moxy.values()
+    moxyCompiler = "com.arello-mobile:moxy-compiler:$versions.moxy"
+
+    // Pickers
+    imagePickerLibs = imagePickers.values()
+    videoPlayerLibs = videoPlayers.values()
+
+    filePicker = "com.github.codekidX:storage-chooser:$versions.filePicker"
+    datePicker = "com.wdullaer:materialdatetimepicker:$versions.datePicker"
+    dateRangePicker = "com.appeaser.sublimepickerlibrary:sublimepickerlibrary:$versions.dateRangePicker"
+
+
+
+    supportLibs = supportDeps.values()
+    networkLibs = retrofit.values() + okHttp.values() + moshi.values()
+    rxJavaLibs = rx.values()
+
+    googleLibs = firebaseLibs.values()
+
+    otherLibs = [dagger, glide, eventBus, loggerLib, cicerone, toasty, sweetAlert, inputMask] + imagePickerLibs
+
+    debugLibs = onlyDebug.values() + leakCannary
+    releaseLibs = onlyRelease.values() + leakCannary
+
+    annotationProcessorLibs = [daggerCompiler, glideCompiler, moxyCompiler]
+}
