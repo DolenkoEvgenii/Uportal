@@ -15,13 +15,13 @@
 
     <ImageButton
         android:id="@+id/btBack"
-        style="@style/SelectableIconBackgroundBorderless"
+        style="@style/SelectableItemBackgroundBorderless"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="10dp"
         android:tint="@color/colorAccent"
-        android:src="@drawable/back_arrow"
-        android:visibility="visible" />
+        android:visibility="visible"
+        app:srcCompat="@drawable/ic_arrow_back" />
 
     <TextView
         android:id="@+id/tvTitle"

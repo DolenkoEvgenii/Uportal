@@ -11,36 +11,30 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppThemeAuth" parent="AppThemeNoActionBar">
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="MainButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="cornerRadius">26dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+    </style>
 
     <style name="SelectableItemTheme">
         <item name="colorControlHighlight">@color/iconRippleColor</item>
     </style>
 
-    <style name="SelectableIconBackgroundBorderless">
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
+    <style name="SelectableItemBackgroundBorderless">
         <item name="android:theme">@style/SelectableItemTheme</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
     </style>
 
-    <style name="SelectableIconBackground">
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
+    <style name="SelectableItemBackground">
         <item name="android:theme">@style/SelectableItemTheme</item>
         <item name="android:background">?attr/selectableItemBackground</item>
-    </style>
-
-    <style name="SelectableItemForeground">
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:theme">@style/SelectableItemTheme</item>
-        <item name="android:foreground">?attr/selectableItemBackground</item>
-    </style>
-
-    <style name="SelectableItemForegroundBordless">
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:theme">@style/SelectableItemTheme</item>
-        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
     </style>
 </resources>

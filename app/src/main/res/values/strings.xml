@@ -11,4 +11,11 @@
     <string name="card_number_incorrect">Номер карты введен некорректно</string>
     <string name="card_number">Номер карты</string>
     <string name="loading">Загрузка</string>
+
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="input_login">Введите логин</string>
+    <string name="input_password">Введите пароль</string>
+    <string name="invalid_login_or_password">Неверный логин или пароль</string>
 </resources>

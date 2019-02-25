@@ -2,8 +2,8 @@ package etu.uportal.di.module
 
 import dagger.Module
 import dagger.Provides
-import retrofit2.Retrofit
 import etu.uportal.model.network.user.UserApi
+import retrofit2.Retrofit
 import javax.inject.Named
 
 @Module(includes = [RetrofitModule::class])

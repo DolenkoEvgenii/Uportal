@@ -9,10 +9,10 @@ import com.trello.rxlifecycle3.LifecycleTransformer
 import com.trello.rxlifecycle3.RxLifecycle
 import com.trello.rxlifecycle3.android.ActivityEvent
 import com.trello.rxlifecycle3.android.FragmentEvent
-import io.reactivex.Observable
-import io.reactivex.functions.Consumer
 import etu.uportal.ui.activity.base.BaseRxFragmentActivity
 import etu.uportal.ui.fragment.BaseRxFragment
+import io.reactivex.Observable
+import io.reactivex.functions.Consumer
 
 object PermissionManager {
     @SuppressLint("CheckResult")

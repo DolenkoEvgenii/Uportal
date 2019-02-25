@@ -1,9 +1,9 @@
 package etu.uportal.presentation.presenter
 
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.support.SupportAppScreen
 import etu.uportal.App
 import etu.uportal.presentation.view.BaseMvpView
+import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 
 class SimplePresenter constructor(

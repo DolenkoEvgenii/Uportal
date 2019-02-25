@@ -18,8 +18,6 @@ import com.google.android.material.appbar.AppBarLayout
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
-import io.reactivex.functions.Consumer
-import org.greenrobot.eventbus.EventBus
 import etu.uportal.BuildConfig
 import etu.uportal.R
 import etu.uportal.model.event.ToolbarUpdatedEvent
@@ -30,6 +28,8 @@ import etu.uportal.utils.helpers.click
 import etu.uportal.utils.helpers.find
 import etu.uportal.utils.manager.PermissionManager
 import etu.uportal.utils.provider.LoadingDialogProvider
+import io.reactivex.functions.Consumer
+import org.greenrobot.eventbus.EventBus
 import java.io.File
 
 abstract class BaseMvpFragment : BaseRxFragment() {

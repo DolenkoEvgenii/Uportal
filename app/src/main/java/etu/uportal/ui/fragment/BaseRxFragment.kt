@@ -8,9 +8,9 @@ import com.trello.rxlifecycle3.LifecycleTransformer
 import com.trello.rxlifecycle3.RxLifecycle
 import com.trello.rxlifecycle3.android.FragmentEvent
 import com.trello.rxlifecycle3.android.RxLifecycleAndroid
+import etu.uportal.utils.moxy.MvpAppCompatFragment
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
-import etu.uportal.utils.moxy.MvpAppCompatFragment
 
 abstract class BaseRxFragment : MvpAppCompatFragment(), LifecycleProvider<FragmentEvent> {
     private val lifecycleSubject = BehaviorSubject.create<FragmentEvent>()

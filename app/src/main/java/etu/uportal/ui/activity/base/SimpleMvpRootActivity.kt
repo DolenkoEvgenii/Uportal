@@ -1,7 +1,7 @@
 package etu.uportal.ui.activity.base
 
-import ru.terrakok.cicerone.android.support.SupportAppScreen
 import etu.uportal.presentation.presenter.SimplePresenter
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class SimpleMvpRootActivity : BaseMvpRootActivity() {
     override fun providePresenter(): SimplePresenter {

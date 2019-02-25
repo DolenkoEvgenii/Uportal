@@ -11,6 +11,9 @@ import com.google.gson.stream.JsonWriter
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
+import etu.uportal.AppConstants
+import etu.uportal.BuildConfig
+import etu.uportal.model.preference.UserPreferences
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -18,9 +21,6 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import etu.uportal.AppConstants
-import etu.uportal.BuildConfig
-import etu.uportal.model.preference.UserPreferences
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
@@ -32,7 +32,7 @@ class RetrofitModule {
     @Singleton
     @Named("main-api")
     fun provideRetrofit(builder: Retrofit.Builder): Retrofit {
-        return builder.baseUrl(AppConstants.API_API).build()
+        return builder.baseUrl(AppConstants.API_URL).build()
     }
 
     @Provides
@@ -99,17 +99,32 @@ class RetrofitModule {
         }
     }
 
+    class ContentTypeInterceptor : Interceptor {
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val originalRequest = chain.request()
+            val requestWithContentType = originalRequest.newBuilder()
+                    .header("Content-Type", "application/json")
+                    .build()
+            return chain.proceed(requestWithContentType)
+        }
+    }
+
     class AuthInterceptor constructor(private val userPreferences: UserPreferences) : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val original = chain.request()
-            val token: String = userPreferences.authToken
 
-            val request = original.newBuilder()
-                    .header("Authorization", token)
-                    .method(original.method(), original.body())
-                    .build()
+            return if (original.headers().names().contains("Authorization")) {
+                chain.proceed(original)
+            } else {
+                val token = "Bearer ${userPreferences.authToken}"
 
-            return chain.proceed(request)
+                val request = original.newBuilder()
+                        .header("Authorization", token)
+                        .method(original.method(), original.body())
+                        .build()
+
+                chain.proceed(request)
+            }
         }
     }
 

@@ -1,17 +1,23 @@
 package etu.uportal.model.network
 
+import android.annotation.SuppressLint
 import android.content.Context
-import io.reactivex.Observable
-import io.reactivex.ObservableTransformer
-import io.reactivex.functions.Function
-import org.json.JSONObject
-import retrofit2.Response
-import ru.terrakok.cicerone.Router
 import etu.uportal.App
 import etu.uportal.R
+import etu.uportal.Screens
 import etu.uportal.model.exception.APIException
+import etu.uportal.model.network.data.request.RefreshRequest
+import etu.uportal.model.network.data.response.AuthResponse
 import etu.uportal.model.network.user.UserApi
 import etu.uportal.model.preference.UserPreferences
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.ObservableTransformer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Function
+import retrofit2.Response
+import ru.terrakok.cicerone.Router
+import java.net.HttpURLConnection
 import java.net.UnknownHostException
 import javax.inject.Inject
 
@@ -23,14 +29,15 @@ open class BaseRepository(val context: Context) {
         App.component.inject(utilityWrapper)
     }
 
-    private fun convertExceptionToText(exc: Throwable): String {
-        return when (exc) {
-            is UnknownHostException -> context.getString(R.string.no_internet_connection)
-            is InterruptedException -> context.getString(R.string.server_error)
-            is APIException -> exc.localizedMessage
-            else -> context.getString(R.string.server_timeout_error)
-        }
+    fun refreshToken(): Observable<AuthResponse> {
+        val refreshToken = utilityWrapper.userPreferences.refreshToken
+
+        return utilityWrapper.userApi
+                .refreshToken(RefreshRequest(refreshToken))
+                .compose(handleErrors(false))
+                .doOnNext { utilityWrapper.userPreferences.saveTokens(it) }
     }
+
 
     fun <T> handleErrors(): ObservableTransformer<Response<T>, T> {
         return ObservableTransformer { observable ->
@@ -50,8 +57,7 @@ open class BaseRepository(val context: Context) {
     }
 
     // OAuth2
-
-    /*@SuppressLint("CheckResult")
+    @SuppressLint("CheckResult")
     fun <T> handleErrors(needRetry: Boolean = true): ObservableTransformer<Response<T>, T> {
         return ObservableTransformer { observable ->
             observable
@@ -91,30 +97,23 @@ open class BaseRepository(val context: Context) {
         }
     }
 
-    fun refreshToken(): Observable<User> {
-        val username = utilityWrapper.userPreferences.getUserLocal().blockingFirst().username
-        val refreshToken = utilityWrapper.userPreferences.refreshToken
-        val request = utilityWrapper.userApi.refresh(RefreshRequest(username, refreshToken))
-
-        return request
-                .compose(handleErrors(false))
-                .doOnNext {
-                    utilityWrapper.userPreferences.saveUser(it)
-                }
-    }*/
+    private fun convertExceptionToText(exc: Throwable): String {
+        return when (exc) {
+            is UnknownHostException -> context.getString(R.string.no_internet_connection)
+            is InterruptedException -> context.getString(R.string.server_error)
+            is APIException -> exc.localizedMessage
+            else -> context.getString(R.string.server_timeout_error)
+        }
+    }
 
     private fun <T> getErrorInstance(response: Response<T>): APIException {
         val httpCode = response.code()
         val body = response.errorBody()?.string()
 
-        val message = body?.let {
-            try {
-                val jsonError = JSONObject(it)
-                return@let jsonError.optString("message") ?: ""
-            } catch (exc: Exception) {
-                return@let body
-            }
-        } ?: ""
+        val message = when (httpCode) {
+            HttpURLConnection.HTTP_UNAUTHORIZED -> "Сессия истекла"
+            else -> "Неизвестная ошибка $httpCode"
+        }
 
         return APIException(message, httpCode, body)
     }

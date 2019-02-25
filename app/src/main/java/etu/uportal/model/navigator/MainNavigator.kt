@@ -2,12 +2,12 @@ package etu.uportal.model.navigator
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import etu.uportal.R
+import etu.uportal.ui.activity.base.BaseMvpFragmentActivity
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace
-import etu.uportal.R
-import etu.uportal.ui.activity.base.BaseMvpFragmentActivity
 
 class MainNavigator(activity: BaseMvpFragmentActivity,
                     containerId: Int = R.id.vFragmentContainer) : SupportAppNavigator(activity, containerId) {

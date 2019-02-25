@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.os.Handler
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.android.material.appbar.AppBarLayout
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.NavigatorHolder
 import etu.uportal.App
 import etu.uportal.R
 import etu.uportal.model.navigator.MainNavigator
 import etu.uportal.utils.provider.LoadingDialogProvider
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
 abstract class BaseMvpFragmentActivity : BaseRxFragmentActivity() {

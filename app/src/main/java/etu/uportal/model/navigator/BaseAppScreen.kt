@@ -3,8 +3,8 @@ package etu.uportal.model.navigator
 import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
-import ru.terrakok.cicerone.android.support.SupportAppScreen
 import etu.uportal.ui.activity.base.SimpleMvpRootActivity
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 import java.io.Serializable
 
 // Базовый класс для всех экранов
