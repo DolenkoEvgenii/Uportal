@@ -30,10 +30,18 @@ import javax.inject.Singleton
 class RetrofitModule {
     @Provides
     @Singleton
-    @Named("main-api")
+    @Named("auth-api")
     fun provideRetrofit(builder: Retrofit.Builder): Retrofit {
         return builder.baseUrl(AppConstants.API_URL).build()
     }
+
+    @Provides
+    @Singleton
+    @Named("content-api")
+    fun provideRetrofitApi(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl(AppConstants.API_URL).build()
+    }
+
 
     @Provides
     @Singleton
@@ -99,16 +107,6 @@ class RetrofitModule {
         }
     }
 
-    class ContentTypeInterceptor : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            val originalRequest = chain.request()
-            val requestWithContentType = originalRequest.newBuilder()
-                    .header("Content-Type", "application/json")
-                    .build()
-            return chain.proceed(requestWithContentType)
-        }
-    }
-
     class AuthInterceptor constructor(private val userPreferences: UserPreferences) : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val original = chain.request()
@@ -116,11 +114,13 @@ class RetrofitModule {
             return if (original.headers().names().contains("Authorization")) {
                 chain.proceed(original)
             } else {
-                val token = "Bearer ${userPreferences.authToken}"
+                var requestBuilder = original.newBuilder()
+                if (userPreferences.authToken.isNotBlank()) {
+                    val token = "Bearer ${userPreferences.authToken}"
+                    requestBuilder = requestBuilder.header("Authorization", token)
+                }
 
-                val request = original.newBuilder()
-                        .header("Authorization", token)
-                        .method(original.method(), original.body())
+                val request = requestBuilder.method(original.method(), original.body())
                         .build()
 
                 chain.proceed(request)

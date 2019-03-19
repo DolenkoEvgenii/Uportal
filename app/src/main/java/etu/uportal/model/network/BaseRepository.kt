@@ -38,24 +38,6 @@ open class BaseRepository(val context: Context) {
                 .doOnNext { utilityWrapper.userPreferences.saveTokens(it) }
     }
 
-
-    fun <T> handleErrors(): ObservableTransformer<Response<T>, T> {
-        return ObservableTransformer { observable ->
-            observable
-                    .onErrorResumeNext(Function { error ->
-                        error.printStackTrace()
-                        return@Function Observable.error(APIException(convertExceptionToText(error)))
-                    })
-                    .map { response ->
-                        if (response.isSuccessful) {
-                            return@map response.body()
-                        } else {
-                            throw getErrorInstance(response)
-                        }
-                    }
-        }
-    }
-
     // OAuth2
     @SuppressLint("CheckResult")
     fun <T> handleErrors(needRetry: Boolean = true): ObservableTransformer<Response<T>, T> {
@@ -112,6 +94,8 @@ open class BaseRepository(val context: Context) {
 
         val message = when (httpCode) {
             HttpURLConnection.HTTP_UNAUTHORIZED -> "Сессия истекла"
+            HttpURLConnection.HTTP_FORBIDDEN -> "Доступ запрещен"
+            HttpURLConnection.HTTP_NOT_FOUND -> "Не найдено"
             else -> "Неизвестная ошибка $httpCode"
         }
 

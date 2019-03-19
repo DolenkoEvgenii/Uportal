@@ -16,7 +16,7 @@ ext {
             rxLifecycle       : '3.0.0',
 
             materialDialog    : '2.0.0',
-            drawer            : '6.1.2',
+            drawer            : '2.0.1',
             flexBox           : '1.0.0',
             sweetAlert        : '1.5.6',
             circleIndicator   : '1.2.2@aar',
@@ -149,7 +149,7 @@ ext {
     // Ui
     segmentControl = "info.hoang8f:android-segmented:$versions.segmentControl"
     circleImageView = "de.hdodenhof:circleimageview:$versions.circleImageView"
-    drawer = "com.mikepenz:materialdrawer:$versions.drawer"
+    drawer = "co.zsmb:materialdrawer-kt:$versions.drawer"
     toasty = "com.github.GrenderG:Toasty:$versions.toasty"
     materialDialogs = "com.afollestad.material-dialogs:core:$versions.materialDialog"
     sweetAlert = "com.github.f0ris.sweetalert:library:$versions.sweetAlert"
@@ -197,7 +197,7 @@ ext {
 
     googleLibs = firebaseLibs.values()
 
-    otherLibs = [dagger, glide, eventBus, loggerLib, cicerone, toasty, sweetAlert, inputMask] + imagePickerLibs
+    otherLibs = [dagger, glide, eventBus, loggerLib, cicerone, toasty, sweetAlert, inputMask, drawer] + imagePickerLibs
 
     debugLibs = onlyDebug.values() + leakCannary
     releaseLibs = onlyRelease.values() + leakCannary

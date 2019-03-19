@@ -1,6 +1,5 @@
 package etu.uportal.presentation.presenter.auth
 
-import android.content.Context
 import com.arellomobile.mvp.InjectViewState
 import etu.uportal.App
 import etu.uportal.R
@@ -19,13 +18,8 @@ import javax.inject.Inject
 
 @InjectViewState
 class LoginPresenter : BasePresenter<LoginView>() {
-
     @Inject
     lateinit var userRepository: UserRepository
-
-    @Inject
-    lateinit var context: Context
-
     @Inject
     lateinit var router: Router
 
@@ -79,13 +73,13 @@ class LoginPresenter : BasePresenter<LoginView>() {
                 .subscribe({
                     onUserResponse(it)
                 }, {
+                    userRepository.userPreferences.clearUserData()
                     viewState.closeLoadingDialog()
-                    showErrorToast(it.localizedMessage)
                 }))
     }
 
     private fun onUserResponse(authResponse: AuthResponse) {
         viewState.closeLoadingDialog()
-        router.newRootScreen(Screens.MainActivityScreen())
+        router.newRootScreen(Screens.MenuActivityScreen())
     }
 }

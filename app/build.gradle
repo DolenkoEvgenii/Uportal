@@ -97,6 +97,9 @@ dependencies {
         transitive = true
     }*/
 
+    implementation 'com.xwray:groupie:2.3.0'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.3.0'
+
     kapt annotationProcessorLibs
 }
 //apply plugin: 'com.google.gms.google-services'

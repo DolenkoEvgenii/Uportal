@@ -26,7 +26,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/auth_input_bg"
             android:hint="@string/login"
-            android:inputType="textNoSuggestions" />
+            android:inputType="textNoSuggestions"
+            android:text="admin@etu.ru" />
 
         <ImageView
             android:layout_width="20dp"
@@ -49,7 +50,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/auth_input_bg"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="H123sadasd" />
 
         <ImageView
             android:layout_width="20dp"

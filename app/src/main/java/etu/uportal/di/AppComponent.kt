@@ -10,6 +10,8 @@ import etu.uportal.di.module.RetrofitModule
 import etu.uportal.model.network.BaseRepository
 import etu.uportal.presentation.presenter.SimplePresenter
 import etu.uportal.presentation.presenter.auth.LoginPresenter
+import etu.uportal.presentation.presenter.menu.MenuPresenter
+import etu.uportal.presentation.presenter.user.UserListPresenter
 import etu.uportal.ui.activity.base.BaseMvpFragmentActivity
 import ru.terrakok.cicerone.Router
 import javax.inject.Singleton
@@ -31,4 +33,8 @@ interface AppComponent {
     fun inject(presenter: SimplePresenter)
 
     fun inject(presenter: LoginPresenter)
+
+    fun inject(presenter: MenuPresenter)
+
+    fun inject(presenter: UserListPresenter)
 }

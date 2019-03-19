@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="etu.uportal.App"
+        android:name=".App"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +21,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon"
         tools:targetApi="n">
-
+        <activity android:name=".ui.activity.menu.MenuActivity" />
         <activity
             android:name=".ui.activity.auth.AuthActivity"
             android:theme="@style/AppThemeAuth">
@@ -31,19 +31,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="etu.uportal.ui.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:windowSoftInputMode="stateHidden" />
-
-        <activity android:name="etu.uportal.ui.activity.base.SimpleMvpRootActivity" />
+        <activity android:name=".ui.activity.base.SimpleMvpRootActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
         <provider
-            android:name="etu.uportal.utils.provider.GenericFileProvider"
+            android:name=".utils.provider.GenericFileProvider"
             android:authorities="${applicationId}"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -52,4 +50,5 @@
                 android:resource="@xml/provider_paths" />
         </provider>
     </application>
+
 </manifest>

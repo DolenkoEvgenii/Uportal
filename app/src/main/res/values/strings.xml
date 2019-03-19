@@ -18,4 +18,7 @@
     <string name="input_login">Введите логин</string>
     <string name="input_password">Введите пароль</string>
     <string name="invalid_login_or_password">Неверный логин или пароль</string>
+    <string name="users">Пользователи</string>
+    <string name="authors">Авторы</string>
+    <string name="logout">Выйти</string>
 </resources>

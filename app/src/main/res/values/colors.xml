@@ -5,5 +5,7 @@
     <color name="colorPrimaryLight">#6191B7</color>
     <color name="colorAccent">#AB7A38</color>
 
-    <color name="iconRippleColor">#AB7A38</color>
+    <color name="colorDrawerItemDisabled">#717171</color>
+
+    <color name="iconRippleColor">#F7BC61</color>
 </resources>

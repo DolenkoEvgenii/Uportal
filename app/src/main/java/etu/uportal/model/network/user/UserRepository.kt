@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 
 class UserRepository @Inject constructor(private val userApi: UserApi,
-                                         private val userPreferences: UserPreferences,
+                                         val userPreferences: UserPreferences,
                                          context: Context) : BaseRepository(context) {
 
     val isAuthorized: Boolean
@@ -18,7 +18,7 @@ class UserRepository @Inject constructor(private val userApi: UserApi,
 
     fun login(login: String, password: String): Observable<AuthResponse> {
         return userApi.login(LoginRequest(login, password))
-                .compose(handleErrors())
+                .compose(handleErrors(false))
                 .doOnNext { userPreferences.saveTokens(it) }
     }
 }
