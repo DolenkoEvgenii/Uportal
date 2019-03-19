@@ -31,21 +31,21 @@ class RetrofitModule {
     @Provides
     @Singleton
     @Named("auth-api")
-    fun provideRetrofit(builder: Retrofit.Builder): Retrofit {
+    fun provideRetrofit(@Named("underscore") builder: Retrofit.Builder): Retrofit {
         return builder.baseUrl(AppConstants.API_URL).build()
     }
 
     @Provides
     @Singleton
     @Named("content-api")
-    fun provideRetrofitApi(builder: Retrofit.Builder): Retrofit {
+    fun provideRetrofitApi(@Named("camelcase") builder: Retrofit.Builder): Retrofit {
         return builder.baseUrl(AppConstants.API_URL).build()
     }
 
-
     @Provides
     @Singleton
-    fun provideRetrofitBuilder(converterFactory: Converter.Factory, okHttpClient: OkHttpClient): Retrofit.Builder {
+    @Named("camelcase")
+    fun provideCamelCaseRetrofitBuilder(@Named("camelcase") converterFactory: Converter.Factory, okHttpClient: OkHttpClient): Retrofit.Builder {
         return Retrofit.Builder()
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -54,13 +54,44 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideConverterFactory(gson: Gson): Converter.Factory {
+    @Named("underscore")
+    fun provideUnderscoreRetrofitBuilder(@Named("underscore") converterFactory: Converter.Factory, okHttpClient: OkHttpClient): Retrofit.Builder {
+        return Retrofit.Builder()
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(converterFactory)
+    }
+
+    @Provides
+    @Singleton
+    @Named("camelcase")
+    fun provideCamelCaseConverterFactory(@Named("camelcase") gson: Gson): Converter.Factory {
         return GsonConverterFactory.create(gson)
     }
 
     @Provides
     @Singleton
-    fun provideGson(): Gson {
+    @Named("underscore")
+    fun provideUnderscoreConverterFactory(@Named("underscore") gson: Gson): Converter.Factory {
+        return GsonConverterFactory.create(gson)
+    }
+
+    @Provides
+    @Singleton
+    @Named("camelcase")
+    fun provideCamelCaseGson(): Gson {
+        return GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(Date::class.java, MyDateTypeAdapter())
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .serializeNulls()
+                .create()
+    }
+
+    @Provides
+    @Singleton
+    @Named("underscore")
+    fun provideUnderscoreGson(): Gson {
         return GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)

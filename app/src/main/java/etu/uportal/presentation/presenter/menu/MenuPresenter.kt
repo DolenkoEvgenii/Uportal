@@ -31,6 +31,7 @@ class MenuPresenter : BasePresenter<MenuView>() {
 
         when (id) {
             MenuActivity.TAB_USERS -> router.newRootScreen(Screens.UserListFragmentScreen())
+            MenuActivity.TAB_AUTHORS -> router.newRootScreen(Screens.AuthorListFragmentScreen())
             MenuActivity.TAB_LOGOUT -> logout()
         }
     }

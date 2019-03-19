@@ -10,6 +10,7 @@ import etu.uportal.di.module.RetrofitModule
 import etu.uportal.model.network.BaseRepository
 import etu.uportal.presentation.presenter.SimplePresenter
 import etu.uportal.presentation.presenter.auth.LoginPresenter
+import etu.uportal.presentation.presenter.author.AuthorListPresenter
 import etu.uportal.presentation.presenter.menu.MenuPresenter
 import etu.uportal.presentation.presenter.user.UserListPresenter
 import etu.uportal.ui.activity.base.BaseMvpFragmentActivity
@@ -37,4 +38,6 @@ interface AppComponent {
     fun inject(presenter: MenuPresenter)
 
     fun inject(presenter: UserListPresenter)
+
+    fun inject(presenter: AuthorListPresenter)
 }
