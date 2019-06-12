@@ -19,4 +19,13 @@ data class Publication(
         get() {
             return SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.getDefault()).format(publishedAt)
         }
+
+    val authors: String
+        get() {
+            if (authorList.isEmpty()) {
+                return "Автор неизвестен"
+            } else {
+                return authorList.map { it.fullName }.reduce { resStr, authorName -> "$resStr, $authorName" }
+            }
+        }
 }

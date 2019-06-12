@@ -15,6 +15,7 @@ open class PublicationItem(val publication: Publication) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.tvPublicationName.text = publication.title
         viewHolder.tvPublicationIntro.text = publication.introText
+        viewHolder.tvPublicationAuthors.text = publication.authors
 
         viewHolder.itemView.vPublicationCard.click { App.component.router().navigateTo(Screens.PublicationDetailedFragmentScreen(publication)) }
     }
