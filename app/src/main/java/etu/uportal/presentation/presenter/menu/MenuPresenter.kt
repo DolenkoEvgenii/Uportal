@@ -23,7 +23,7 @@ class MenuPresenter : BasePresenter<MenuView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        onDrawerItemClick(MenuActivity.TAB_USERS)
+        onDrawerItemClick(MenuActivity.TAB_PUBLICATIONS)
     }
 
     fun onDrawerItemClick(id: Long) {
@@ -32,6 +32,7 @@ class MenuPresenter : BasePresenter<MenuView>() {
         when (id) {
             MenuActivity.TAB_USERS -> router.newRootScreen(Screens.UserListFragmentScreen())
             MenuActivity.TAB_AUTHORS -> router.newRootScreen(Screens.AuthorListFragmentScreen())
+            MenuActivity.TAB_PUBLICATIONS -> router.newRootScreen(Screens.PublicationListFragmentScreen())
             MenuActivity.TAB_LOGOUT -> logout()
         }
     }

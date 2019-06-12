@@ -12,6 +12,7 @@ import etu.uportal.presentation.presenter.SimplePresenter
 import etu.uportal.presentation.presenter.auth.LoginPresenter
 import etu.uportal.presentation.presenter.author.AuthorListPresenter
 import etu.uportal.presentation.presenter.menu.MenuPresenter
+import etu.uportal.presentation.presenter.publication.PublicationListPresenter
 import etu.uportal.presentation.presenter.user.UserListPresenter
 import etu.uportal.ui.activity.base.BaseMvpFragmentActivity
 import ru.terrakok.cicerone.Router
@@ -32,6 +33,8 @@ interface AppComponent {
     fun inject(baseActivity: BaseMvpFragmentActivity)
 
     fun inject(presenter: SimplePresenter)
+
+    fun inject(presenter: PublicationListPresenter)
 
     fun inject(presenter: LoginPresenter)
 

@@ -5,12 +5,12 @@ import androidx.multidex.MultiDexApplication
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
-import com.squareup.leakcanary.LeakCanary
 import es.dmoral.toasty.Toasty
 import etu.uportal.di.AppComponent
 import etu.uportal.di.DaggerAppComponent
 import etu.uportal.di.module.ApiModule
 import etu.uportal.di.module.AppModule
+import etu.uportal.di.module.CiceroneModule
 import etu.uportal.di.module.RetrofitModule
 
 open class App : MultiDexApplication() {
@@ -22,10 +22,6 @@ open class App : MultiDexApplication() {
 
         component = buildComponent()
         MultiDex.install(this)
-
-        if (BuildConfig.DEBUG) {
-            LeakCanary.install(this)
-        }
     }
 
     private fun initToasty() {
@@ -39,7 +35,7 @@ open class App : MultiDexApplication() {
                 .showThreadInfo(false)
                 .methodCount(2)
                 .methodOffset(7)
-                .tag("Haglar_Log")
+                .tag("Uportal_Log")
                 .build()
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
     }
@@ -57,6 +53,7 @@ open class App : MultiDexApplication() {
                 .appModule(AppModule(this))
                 .retrofitModule(RetrofitModule())
                 .apiModule(ApiModule())
+                .ciceroneModule(CiceroneModule())
                 .build()
     }
 

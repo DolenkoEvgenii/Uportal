@@ -57,10 +57,10 @@ class MenuActivity : BaseMvpFragmentActivity(), MenuView, FragmentManager.OnBack
             headerHeightDp = 120
             headerDivider = false
 
-            primaryItem(R.string.users) {
-                identifier = TAB_USERS
+            primaryItem(R.string.publications) {
+                identifier = TAB_PUBLICATIONS
                 iconTintingEnabled = true
-                icon = R.drawable.ic_user
+                icon = R.drawable.ic_publication
                 iconColorRes = R.color.colorDrawerItemDisabled
                 selectedIconColorRes = R.color.primary
             }
@@ -69,6 +69,16 @@ class MenuActivity : BaseMvpFragmentActivity(), MenuView, FragmentManager.OnBack
                 identifier = TAB_AUTHORS
                 iconTintingEnabled = true
                 icon = R.drawable.ic_author
+                iconColorRes = R.color.colorDrawerItemDisabled
+                selectedIconColorRes = R.color.primary
+            }
+
+            divider {}
+
+            primaryItem(R.string.users) {
+                identifier = TAB_USERS
+                iconTintingEnabled = true
+                icon = R.drawable.ic_user
                 iconColorRes = R.color.colorDrawerItemDisabled
                 selectedIconColorRes = R.color.primary
             }
@@ -110,6 +120,7 @@ class MenuActivity : BaseMvpFragmentActivity(), MenuView, FragmentManager.OnBack
     companion object {
         const val TAB_USERS = 1L
         const val TAB_AUTHORS = 2L
-        const val TAB_LOGOUT = 3L
+        const val TAB_PUBLICATIONS = 3L
+        const val TAB_LOGOUT = 4L
     }
 }

@@ -6,7 +6,7 @@ data class PaginationResponse<T>(
         val last: Boolean,
         val number: Int,
         val numberOfElements: Int,
-        val pageable: Pageable,
+        val pageable: Any?,
         val size: Int,
         val sort: Sort,
         val totalElements: Int,
