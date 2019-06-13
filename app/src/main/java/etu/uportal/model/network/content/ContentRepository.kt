@@ -28,8 +28,11 @@ class ContentRepository @Inject constructor(private val contentApi: ContentApi, 
         return contentApi.getAuthor(authorId).compose(handleErrors())
     }
 
-    fun getPublications(offset: Int, limit: Int = PaginationTool.DEFAULT_PAGE_SIZE): Observable<PaginationResponse<Publication>> {
-        return contentApi.getPublications(offset, limit)
-                .compose(handleErrors())
+    fun getPublications(offset: Int, search: String? = null, limit: Int = PaginationTool.DEFAULT_PAGE_SIZE): Observable<PaginationResponse<Publication>> {
+        if (search.isNullOrBlank()) {
+            return contentApi.getPublications(offset, limit).compose(handleErrors())
+        } else {
+            return contentApi.searchPublications(search, offset, limit).compose(handleErrors())
+        }
     }
 }

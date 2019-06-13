@@ -3,6 +3,7 @@ package etu.uportal.model.models
 import etu.uportal.model.data.Publication
 
 object PublicationsModel {
+    var searchQuery = ""
     val publicationList: MutableList<Publication> = ArrayList()
 
     val offset: Int

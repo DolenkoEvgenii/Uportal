@@ -32,4 +32,8 @@ interface ContentApi {
     @Headers("accept:application/json")
     @GET("api/publication/")
     fun getPublications(@Query("offset") offset: Int, @Query("limit") limit: Int): Observable<Response<PaginationResponse<Publication>>>
+
+    @Headers("accept:application/json")
+    @GET("api/publication/search")
+    fun searchPublications(@Query("query") query: String, @Query("offset") offset: Int, @Query("limit") limit: Int): Observable<Response<PaginationResponse<Publication>>>
 }

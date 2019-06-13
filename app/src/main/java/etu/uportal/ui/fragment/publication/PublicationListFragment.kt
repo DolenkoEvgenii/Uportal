@@ -1,5 +1,6 @@
 package etu.uportal.ui.fragment.publication
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.google.android.material.appbar.AppBarLayout
+import com.jakewharton.rxbinding3.widget.textChanges
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import etu.uportal.R
@@ -17,8 +19,9 @@ import etu.uportal.presentation.view.publication.PublicationListView
 import etu.uportal.ui.adapter.items.PublicationItem
 import etu.uportal.ui.fragment.BaseMvpFragment
 import etu.uportal.utils.pagination.paging
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_publication_list.*
-import kotlinx.android.synthetic.main.toolbar_simple.view.*
+import java.util.concurrent.TimeUnit
 
 class PublicationListFragment : BaseMvpFragment(), PublicationListView {
     @InjectPresenter
@@ -28,11 +31,21 @@ class PublicationListFragment : BaseMvpFragment(), PublicationListView {
         return inflater.inflate(R.layout.fragment_publication_list, container, false)
     }
 
+    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         refreshLayout.setOnRefreshListener { presenter.onRefresh() }
         rvPublications.layoutManager = LinearLayoutManager(context)
+
+        etSearch.textChanges()
+                .skipInitialValue()
+                .map { it.toString() }
+                .debounce (600, TimeUnit.MILLISECONDS)
+                .distinctUntilChanged()
+                .compose (bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { presenter.onSearch(it) }
     }
 
     override fun showPublications(publications: List<Publication>) {

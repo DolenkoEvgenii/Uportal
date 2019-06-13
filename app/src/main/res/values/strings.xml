@@ -26,4 +26,5 @@
     <string name="logout">Выйти</string>
     <string name="author_publications">Публикации автора</string>
     <string name="publications_count">Количество публикаций</string>
+    <string name="search">Поиск</string>
 </resources>

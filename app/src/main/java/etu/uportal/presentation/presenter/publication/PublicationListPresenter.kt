@@ -27,22 +27,49 @@ class PublicationListPresenter : BasePresenter<PublicationListView>() {
         viewState.showPublications(model.publicationList)
     }
 
+    fun onSearch(query: String) {
+        model.searchQuery = query
+
+        if (query.isBlank()) {
+            onRefresh()
+        } else {
+            val wasEmpty = model.isEmpty
+            model.clear()
+            viewState.clearPublications()
+            viewState.showLoadingDialog()
+
+            if (wasEmpty) {
+                loadMore()
+            }
+        }
+    }
+
     fun loadMore() {
         loadMoreAuthors()
     }
 
     fun onRefresh() {
+        val wasEmpty = model.isEmpty
         model.clear()
         viewState.clearPublications()
+
+        if (wasEmpty) {
+            loadMore()
+        }
     }
 
     private fun loadMoreAuthors() {
+        if (model.offset > 0 && model.searchQuery.isNotBlank()) {
+            viewState.closeLoadingDialog()
+            return
+        }
+
         if (model.offset == 0) {
             viewState.showLoadingDialog()
         }
 
         unsubscribeOnDestroy(contentRepository
-                .getPublications(model.offset)
+                .getPublications(model.offset, model.searchQuery)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
