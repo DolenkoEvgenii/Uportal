@@ -14,55 +14,50 @@
         android:paddingBottom="20dp">
 
         <TextView
-            android:id="@+id/tvPublicationName"
+            android:id="@+id/tvAuthorName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/tvAuthorName"
+            android:id="@+id/tvAuthorEngName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
+            android:textColor="@android:color/black"
+            android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/tvPublicationCreateDate"
+            android:id="@+id/tvAuthorExtraFields"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="#5A5A5A" />
-
-        <TextView
-            android:id="@+id/tvPublicationExtraFields"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:textColor="#383838"
             android:textSize="15sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="4dp"
             android:background="#5A5A5A" />
 
         <TextView
-            android:id="@+id/tvPublicationIntro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/author_publications"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPublications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="#505050"
-            android:textSize="15sp" />
+            android:isScrollContainer="false"
+            android:scrollbars="none" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

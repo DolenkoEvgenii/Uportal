@@ -8,6 +8,7 @@ import etu.uportal.di.module.AppModule
 import etu.uportal.di.module.CiceroneModule
 import etu.uportal.di.module.RetrofitModule
 import etu.uportal.model.network.BaseRepository
+import etu.uportal.model.network.content.ContentRepository
 import etu.uportal.presentation.presenter.SimplePresenter
 import etu.uportal.presentation.presenter.auth.LoginPresenter
 import etu.uportal.presentation.presenter.author.AuthorListPresenter
@@ -24,6 +25,8 @@ interface AppComponent {
     fun context(): Context
 
     fun router(): Router
+
+    fun contentRepository(): ContentRepository
 
 
     fun inject(utilityWrapper: BaseRepository.ApiUtilityWrapper)

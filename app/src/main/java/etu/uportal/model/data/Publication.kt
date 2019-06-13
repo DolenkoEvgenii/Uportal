@@ -28,4 +28,15 @@ data class Publication(
                 return authorList.map { it.fullName }.reduce { resStr, authorName -> "$resStr, $authorName" }
             }
         }
+
+
+    val extraFieldsStr: String?
+        get() {
+            val stringFields = publicationFields.map { it.name + ": " + it.value }
+            return if (stringFields.isEmpty()) {
+                null
+            } else {
+                stringFields.reduce { resStr, s -> resStr + "\n" + s }
+            }
+        }
 }

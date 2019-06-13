@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.appbar.AppBarLayout
+import etu.uportal.App
 import etu.uportal.R
+import etu.uportal.Screens
 import etu.uportal.model.data.Publication
 import etu.uportal.ui.fragment.BaseMvpFragment
+import etu.uportal.utils.helpers.click
 import kotlinx.android.synthetic.main.fragment_publication_detailed.*
-import kotlinx.android.synthetic.main.toolbar_simple.view.*
 
 class PublicationDetailedFragment : BaseMvpFragment() {
     val publication: Publication
@@ -33,14 +35,23 @@ class PublicationDetailedFragment : BaseMvpFragment() {
         val author = publication.authorList.firstOrNull()
         if (author != null) {
             tvAuthorName.text = author.fullName
+            tvAuthorName.click {
+                App.component.router().navigateTo(Screens.AuthorDetailedFragmentScreen(author).apply { inNewActivity = true })
+            }
         } else {
             tvAuthorName.visibility = View.GONE
+        }
+
+        val extraFields = publication.extraFieldsStr
+        if (extraFields == null) {
+            tvPublicationExtraFields.visibility = View.GONE
+        } else {
+            tvPublicationExtraFields.text = extraFields
         }
     }
 
     override fun setupToolbar(appBar: AppBarLayout): Toolbar? {
-        return provideSimpleToolbar(publication.title, appBar, false).also {
-            it.btBack.visibility = View.GONE
+        return provideSimpleToolbar(getString(R.string.publication_info), appBar, false).also {
             appBar.addView(it)
         }
     }

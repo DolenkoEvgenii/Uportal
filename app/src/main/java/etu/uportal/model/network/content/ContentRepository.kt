@@ -2,6 +2,7 @@ package etu.uportal.model.network.content
 
 import android.content.Context
 import etu.uportal.model.data.Author
+import etu.uportal.model.data.AuthorDetailed
 import etu.uportal.model.data.Publication
 import etu.uportal.model.data.User
 import etu.uportal.model.network.BaseRepository
@@ -21,6 +22,10 @@ class ContentRepository @Inject constructor(private val contentApi: ContentApi, 
     fun getAuthors(offset: Int, limit: Int = PaginationTool.DEFAULT_PAGE_SIZE): Observable<PaginationResponse<Author>> {
         return contentApi.getAuthors(offset, limit)
                 .compose(handleErrors())
+    }
+
+    fun getAuthorDetailed(authorId: Int): Observable<AuthorDetailed> {
+        return contentApi.getAuthor(authorId).compose(handleErrors())
     }
 
     fun getPublications(offset: Int, limit: Int = PaginationTool.DEFAULT_PAGE_SIZE): Observable<PaginationResponse<Publication>> {

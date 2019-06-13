@@ -2,6 +2,7 @@ package etu.uportal.model.network.content
 
 
 import etu.uportal.model.data.Author
+import etu.uportal.model.data.AuthorDetailed
 import etu.uportal.model.data.Publication
 import etu.uportal.model.data.User
 import etu.uportal.model.network.data.request.RefreshRequest
@@ -22,6 +23,11 @@ interface ContentApi {
     @Headers("accept:application/json")
     @GET("api/author/")
     fun getAuthors(@Query("offset") offset: Int, @Query("limit") limit: Int): Observable<Response<PaginationResponse<Author>>>
+
+    @Headers("accept:application/json")
+    @GET("api/author/{id}")
+    fun getAuthor(@Path("id") authorId: Int): Observable<Response<AuthorDetailed>>
+
 
     @Headers("accept:application/json")
     @GET("api/publication/")

@@ -8,9 +8,10 @@
     app:cardUseCompatPadding="true">
 
     <LinearLayout
+        android:id="@+id/vAuthorCard"
+        style="@style/SelectableItemBackgroundBorderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/SelectableItemBackgroundBorderless"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -19,6 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvAuthorPublicationsCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#505050"
+            android:textSize="14sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

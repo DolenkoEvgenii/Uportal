@@ -17,7 +17,9 @@ open class PublicationItem(val publication: Publication) : Item() {
         viewHolder.tvPublicationIntro.text = publication.introText
         viewHolder.tvPublicationAuthors.text = publication.authors
 
-        viewHolder.itemView.vPublicationCard.click { App.component.router().navigateTo(Screens.PublicationDetailedFragmentScreen(publication)) }
+        viewHolder.itemView.vPublicationCard.click {
+            App.component.router().navigateTo(Screens.PublicationDetailedFragmentScreen(publication).apply { inNewActivity = true })
+        }
     }
 
     override fun getLayout(): Int = R.layout.card_publication
