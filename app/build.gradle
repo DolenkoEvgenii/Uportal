@@ -100,6 +100,8 @@ dependencies {
     implementation 'com.xwray:groupie:2.3.0'
     implementation 'com.xwray:groupie-kotlin-android-extensions:2.3.0'
 
+    implementation 'com.afollestad.material-dialogs:core:3.0.0-rc3'
+
     kapt annotationProcessorLibs
 }
 //apply plugin: 'com.google.gms.google-services'

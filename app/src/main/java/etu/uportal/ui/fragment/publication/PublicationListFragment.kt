@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.google.android.material.appbar.AppBarLayout
 import com.jakewharton.rxbinding3.widget.textChanges
@@ -24,7 +26,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_publication_list.*
 import java.util.concurrent.TimeUnit
 
-class PublicationListFragment : BaseMvpFragment(), PublicationListView {
+class PublicationListFragment : BaseMvpFragment(), PublicationListView, PublicationItem.OnPublicationClickListener {
     @InjectPresenter
     lateinit var presenter: PublicationListPresenter
 
@@ -42,9 +44,9 @@ class PublicationListFragment : BaseMvpFragment(), PublicationListView {
         etSearch.textChanges()
                 .skipInitialValue()
                 .map { it.toString() }
-                .debounce (600, TimeUnit.MILLISECONDS)
+                .debounce(600, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
-                .compose (bindToLifecycle())
+                .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { presenter.onSearch(it) }
 
@@ -53,18 +55,28 @@ class PublicationListFragment : BaseMvpFragment(), PublicationListView {
 
     override fun showPublications(publications: List<Publication>) {
         val groupAdapter = GroupAdapter<ViewHolder>()
-        groupAdapter.addAll(publications.map { PublicationItem(it) })
+        groupAdapter.addAll(publications.map { PublicationItem(it, this) })
         rvPublications.adapter = groupAdapter
 
         rvPublications.paging({ presenter.loadMore() }, emptyListCount = publications.size)
     }
 
     override fun addPublications(publications: List<Publication>) {
-        (rvPublications.adapter as? GroupAdapter)?.addAll(publications.map { PublicationItem(it) })
+        (rvPublications.adapter as? GroupAdapter)?.addAll(publications.map { PublicationItem(it, this) })
     }
 
     override fun clearPublications() {
         (rvPublications.adapter as? GroupAdapter)?.clear()
+    }
+
+    override fun onLongClick(publication: Publication) {
+        val context = context ?: return
+
+        MaterialDialog(context).show {
+            listItems(items = listOf(getString(R.string.edit))) { dialog, index, text ->
+                presenter.onPublicationEditClick(publication)
+            }
+        }
     }
 
     override fun setupToolbar(appBar: AppBarLayout): Toolbar? {

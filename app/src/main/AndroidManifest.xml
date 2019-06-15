@@ -19,7 +19,7 @@
         android:supportsRtl="false"
         android:theme="@style/AppThemeNoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:icon"
+        tools:replace="android:icon,android:supportsRtl"
         tools:targetApi="n">
         <activity android:name=".ui.activity.menu.MenuActivity" />
         <activity

@@ -15,6 +15,7 @@ import etu.uportal.presentation.presenter.author.AuthorListPresenter
 import etu.uportal.presentation.presenter.author.SelectAuthorPresenter
 import etu.uportal.presentation.presenter.menu.MenuPresenter
 import etu.uportal.presentation.presenter.publication.CreatePublicationPresenter
+import etu.uportal.presentation.presenter.publication.EditPublicationPresenter
 import etu.uportal.presentation.presenter.publication.PublicationListPresenter
 import etu.uportal.presentation.presenter.user.UserListPresenter
 import etu.uportal.ui.activity.base.BaseMvpFragmentActivity
@@ -52,4 +53,6 @@ interface AppComponent {
     fun inject(presenter: SelectAuthorPresenter)
 
     fun inject(presenter: CreatePublicationPresenter)
+
+    fun inject(presenter: EditPublicationPresenter)
 }

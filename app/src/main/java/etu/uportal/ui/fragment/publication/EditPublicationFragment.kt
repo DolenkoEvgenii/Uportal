@@ -9,19 +9,30 @@ import android.widget.EditText
 import android.widget.Space
 import androidx.appcompat.widget.Toolbar
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.appbar.AppBarLayout
 import etu.uportal.R
-import etu.uportal.presentation.presenter.publication.CreatePublicationPresenter
-import etu.uportal.presentation.view.publication.CreatePublicationView
+import etu.uportal.model.data.Publication
+import etu.uportal.model.data.PublicationField
+import etu.uportal.presentation.presenter.publication.EditPublicationPresenter
+import etu.uportal.presentation.view.publication.EditPublicationView
 import etu.uportal.ui.fragment.BaseMvpFragment
 import etu.uportal.utils.helpers.children
 import etu.uportal.utils.helpers.click
 import etu.uportal.utils.helpers.dp
 import kotlinx.android.synthetic.main.fragment_manage_publication.*
 
-class CreatePublicationFragment : BaseMvpFragment(), CreatePublicationView {
+class EditPublicationFragment : BaseMvpFragment(), EditPublicationView {
     @InjectPresenter
-    lateinit var presenter: CreatePublicationPresenter
+    lateinit var presenter: EditPublicationPresenter
+
+    val publication: Publication
+        get() = arguments?.getSerializable(ARG_PUBLICATION) as Publication
+
+    @ProvidePresenter
+    fun providePresenter(): EditPublicationPresenter {
+        return EditPublicationPresenter(publication)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_manage_publication, container, false)
@@ -33,6 +44,8 @@ class CreatePublicationFragment : BaseMvpFragment(), CreatePublicationView {
 
         btSelectAuthors.click(this) { presenter.onPickAuthorsClick() }
         btAddField.click(this) { addExtraFields() }
+
+        btPublicationAction.setText(R.string.update_publication)
         btPublicationAction.click(this) { createPublication() }
     }
 
@@ -55,13 +68,23 @@ class CreatePublicationFragment : BaseMvpFragment(), CreatePublicationView {
             fields.add(Pair(name, value))
         }
 
-        presenter.onCreatePublicationClick(CreatePublicationPresenter.CreatePublicationData(title, description, fields))
+        presenter.onCreatePublicationClick(EditPublicationPresenter.EditPublicationData(title, description, fields))
     }
 
-    private fun addExtraFields() {
+    override fun bindData(title: String, intro: String, fields: List<PublicationField>) {
+        etTitle.setText(title)
+        etDescription.setText(intro)
+
+        vExtraFieldsContainer.removeAllViewsInLayout()
+        fields.forEach { addExtraFields(it.name, it.value) }
+    }
+
+    private fun addExtraFields(title: String = "", value: String = "") {
         vExtraFieldsContainer.addView(getSpace(15.dp))
 
         val extraFieldsView = layoutInflater.inflate(R.layout.view_extra_fields, vExtraFieldsContainer, false)
+        extraFieldsView.findViewById<EditText>(R.id.etName).setText(title)
+        extraFieldsView.findViewById<EditText>(R.id.etValue).setText(value)
         vExtraFieldsContainer.addView(extraFieldsView)
     }
 
@@ -72,14 +95,17 @@ class CreatePublicationFragment : BaseMvpFragment(), CreatePublicationView {
     }
 
     override fun setupToolbar(appBar: AppBarLayout): Toolbar? {
-        return provideSimpleToolbar(getString(R.string.create_publication), appBar).also {
+        return provideSimpleToolbar(getString(R.string.edit_publication), appBar).also {
             appBar.addView(it)
         }
     }
 
     companion object {
-        fun newInstance(): CreatePublicationFragment {
-            return CreatePublicationFragment()
+        private const val ARG_PUBLICATION = "publication arg"
+
+        fun newInstance(publication: Publication): EditPublicationFragment {
+            val args = Bundle().apply { putSerializable(ARG_PUBLICATION, publication) }
+            return EditPublicationFragment().apply { arguments = args }
         }
     }
 }

@@ -112,7 +112,7 @@
             android:background="#3C3C3C" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btCreatePublication"
+            android:id="@+id/btPublicationAction"
             style="@style/MainButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"

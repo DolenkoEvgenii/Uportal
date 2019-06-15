@@ -13,6 +13,7 @@ import etu.uportal.ui.fragment.author.AuthorDetailedFragment
 import etu.uportal.ui.fragment.author.AuthorListFragment
 import etu.uportal.ui.fragment.author.SelectAuthorsFragment
 import etu.uportal.ui.fragment.publication.CreatePublicationFragment
+import etu.uportal.ui.fragment.publication.EditPublicationFragment
 import etu.uportal.ui.fragment.publication.PublicationDetailedFragment
 import etu.uportal.ui.fragment.publication.PublicationListFragment
 import etu.uportal.ui.fragment.user.UserListFragment
@@ -74,9 +75,15 @@ object Screens {
         }
     }
 
-    class CreatePublicationFragmentScreen() : BaseAppScreen(), Serializable {
+    class CreatePublicationFragmentScreen : BaseAppScreen(), Serializable {
         override fun getFragment(): Fragment {
             return CreatePublicationFragment.newInstance()
+        }
+    }
+
+    class EditPublicationFragmentScreen(val publication: Publication) : BaseAppScreen(), Serializable {
+        override fun getFragment(): Fragment {
+            return EditPublicationFragment.newInstance(publication)
         }
     }
 }

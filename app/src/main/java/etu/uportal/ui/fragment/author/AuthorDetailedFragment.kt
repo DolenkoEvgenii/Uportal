@@ -14,6 +14,7 @@ import com.xwray.groupie.ViewHolder
 import etu.uportal.App
 import etu.uportal.R
 import etu.uportal.model.data.AuthorDetailed
+import etu.uportal.model.data.Publication
 import etu.uportal.ui.adapter.items.PublicationItem
 import etu.uportal.ui.fragment.BaseMvpFragment
 import etu.uportal.utils.helpers.showErrorToast
@@ -21,7 +22,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_author_detailed.*
 
-class AuthorDetailedFragment : BaseMvpFragment() {
+class AuthorDetailedFragment : BaseMvpFragment(), PublicationItem.OnPublicationClickListener {
     private val authorId: Int
         get() = arguments?.getInt(ARG_AUTHOR_ID) ?: throw  IllegalArgumentException()
 
@@ -66,9 +67,13 @@ class AuthorDetailedFragment : BaseMvpFragment() {
 
         rvPublications.layoutManager = LinearLayoutManager(context)
         val groupAdapter = GroupAdapter<ViewHolder>().apply {
-            addAll(author.publications.map { PublicationItem(it) })
+            addAll(author.publications.map { PublicationItem(it, this@AuthorDetailedFragment) })
         }
         rvPublications.adapter = groupAdapter
+    }
+
+    override fun onLongClick(publication: Publication) {
+
     }
 
     override fun setupToolbar(appBar: AppBarLayout): Toolbar? {

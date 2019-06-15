@@ -3,6 +3,7 @@ package etu.uportal.presentation.presenter.publication
 import com.arellomobile.mvp.InjectViewState
 import etu.uportal.App
 import etu.uportal.Screens
+import etu.uportal.model.data.Publication
 import etu.uportal.model.event.PublicationUpdateEvent
 import etu.uportal.model.models.PublicationsModel
 import etu.uportal.model.network.content.ContentRepository
@@ -38,6 +39,10 @@ class PublicationListPresenter : BasePresenter<PublicationListView>() {
 
     fun onCreatePublicationClick() {
         router.navigateTo(Screens.CreatePublicationFragmentScreen().apply { inNewActivity = true })
+    }
+
+    fun onPublicationEditClick(publication: Publication) {
+        router.navigateTo(Screens.EditPublicationFragmentScreen(publication).apply { inNewActivity = true })
     }
 
     fun onSearch(query: String) {

@@ -6,6 +6,7 @@ import etu.uportal.model.data.AuthorDetailed
 import etu.uportal.model.data.Publication
 import etu.uportal.model.data.User
 import etu.uportal.model.network.data.request.CreatePublicationRequest
+import etu.uportal.model.network.data.request.EditPublicationRequest
 import etu.uportal.model.network.data.request.RefreshRequest
 import etu.uportal.model.network.data.response.pagination.PaginationResponse
 import io.reactivex.Observable
@@ -42,4 +43,8 @@ interface ContentApi {
     @Headers("accept:application/json")
     @POST("api/publication/")
     fun createPublication(@Body request: CreatePublicationRequest): Observable<Response<ResponseBody>>
+
+    @Headers("accept:application/json")
+    @POST("api/publication/{id}")
+    fun editPublication(@Path("id") publicationId: Int, @Body request: EditPublicationRequest): Observable<Response<ResponseBody>>
 }

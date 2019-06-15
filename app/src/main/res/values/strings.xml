@@ -26,6 +26,8 @@
     <string name="publication_info">Информация о публикации</string>
     <string name="publications">Публикации</string>
     <string name="create_publication">Создать публикацию</string>
+    <string name="update_publication">Обновить публикацию</string>
+    <string name="edit_publication">Редактировать публикацию</string>
     <string name="logout">Выйти</string>
     <string name="author_publications">Публикации автора</string>
     <string name="publications_count">Количество публикаций</string>
@@ -42,4 +44,5 @@
     <string name="description_validation_error">Описание слишком короткое</string>
     <string name="author_validation_error">Не выбрано ни олного автора</string>
     <string name="fields_validation_error">Не все дополнительные поля заполнены</string>
+    <string name="edit">Редактировать</string>
 </resources>
