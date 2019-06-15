@@ -20,11 +20,26 @@
     <string name="invalid_login_or_password">Неверный логин или пароль</string>
     <string name="users">Пользователи</string>
     <string name="authors">Авторы</string>
+    <string name="select_authors">Выберите авторов</string>
+    <string name="to_select_authors">Выбрать авторов</string>
     <string name="author_info">Информация об авторе</string>
     <string name="publication_info">Информация о публикации</string>
     <string name="publications">Публикации</string>
+    <string name="create_publication">Создать публикацию</string>
     <string name="logout">Выйти</string>
     <string name="author_publications">Публикации автора</string>
     <string name="publications_count">Количество публикаций</string>
     <string name="search">Поиск</string>
+    <string name="publication_authors">Авторы публикации</string>
+    <string name="empty">Пусто</string>
+    <string name="title">Название</string>
+    <string name="description">Описание</string>
+    <string name="extra_fields">Дополнительные поля</string>
+    <string name="add_field">Добавить поле</string>
+    <string name="value">Значение</string>
+
+    <string name="title_validation_error">Название слишком короткое</string>
+    <string name="description_validation_error">Описание слишком короткое</string>
+    <string name="author_validation_error">Не выбрано ни олного автора</string>
+    <string name="fields_validation_error">Не все дополнительные поля заполнены</string>
 </resources>

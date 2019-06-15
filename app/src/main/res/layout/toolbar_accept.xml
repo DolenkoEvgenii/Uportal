@@ -1,0 +1,59 @@
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimary"
+    app:contentInsetEnd="0dp"
+    app:contentInsetLeft="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetStart="0dp"
+    app:elevation="0dp"
+    app:layout_scrollFlags="enterAlways"
+    app:title="">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btBack"
+            style="@style/SelectableItemBackgroundBorderless"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:tint="@android:color/white"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="8sp"
+            android:maxLines="1"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            tools:text="Область" />
+
+        <ImageButton
+            android:id="@+id/btAccept"
+            style="@style/SelectableItemBackgroundBorderless"
+            android:layout_width="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:tint="@android:color/white"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_check" />
+    </LinearLayout>
+</androidx.appcompat.widget.Toolbar>

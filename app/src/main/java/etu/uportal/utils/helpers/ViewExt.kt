@@ -8,10 +8,11 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding3.view.clicks
-import com.trello.rxlifecycle3.android.lifecycle.kotlin.bindToLifecycle
+import com.trello.rxlifecycle3.android.lifecycle.kotlin.bindUntilEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
 
@@ -111,7 +112,7 @@ fun View.resize(width: Int, height: Int) {
 @SuppressLint("CheckResult")
 @Suppress("unchecked_cast")
 fun <T : View> T.click(lifecycleOwner: LifecycleOwner, block: (T) -> Unit) {
-    clicks().bindToLifecycle(lifecycleOwner)
+    clicks().bindUntilEvent(lifecycleOwner, Lifecycle.Event.ON_DESTROY)
             .debounce(300, TimeUnit.MILLISECONDS)
             .subscribeOn(AndroidSchedulers.mainThread())
             .observeOn(AndroidSchedulers.mainThread())
@@ -126,6 +127,7 @@ fun <T : View> T.click(block: (T) -> Unit) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { block(this) }
 }
+
 /**
  * Extension method to set OnClickListener on a view.
  */

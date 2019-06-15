@@ -18,6 +18,7 @@ import etu.uportal.presentation.presenter.publication.PublicationListPresenter
 import etu.uportal.presentation.view.publication.PublicationListView
 import etu.uportal.ui.adapter.items.PublicationItem
 import etu.uportal.ui.fragment.BaseMvpFragment
+import etu.uportal.utils.helpers.click
 import etu.uportal.utils.pagination.paging
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_publication_list.*
@@ -46,6 +47,8 @@ class PublicationListFragment : BaseMvpFragment(), PublicationListView {
                 .compose (bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { presenter.onSearch(it) }
+
+        btAddPublication.click(this) { presenter.onCreatePublicationClick() }
     }
 
     override fun showPublications(publications: List<Publication>) {

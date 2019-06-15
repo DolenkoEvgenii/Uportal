@@ -6,8 +6,11 @@ import etu.uportal.model.data.AuthorDetailed
 import etu.uportal.model.data.Publication
 import etu.uportal.model.data.User
 import etu.uportal.model.network.BaseRepository
+import etu.uportal.model.network.data.request.CreatePublicationRequest
 import etu.uportal.model.network.data.response.pagination.PaginationResponse
+import etu.uportal.presentation.presenter.publication.CreatePublicationPresenter
 import etu.uportal.utils.pagination.PaginationTool
+import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -34,5 +37,15 @@ class ContentRepository @Inject constructor(private val contentApi: ContentApi, 
         } else {
             return contentApi.searchPublications(search, offset, limit).compose(handleErrors())
         }
+    }
+
+    fun createPublication(data: CreatePublicationPresenter.CreatePublicationData, authors: List<Author>): Completable {
+        val authorIds = authors.map { it.id }
+        val fields = data.fields.map { CreatePublicationRequest.ExtraFields(it.first, it.second) }
+        val request = CreatePublicationRequest(authorIds, data.title, data.description, fields)
+
+        return contentApi.createPublication(request)
+                .compose(handleErrors())
+                .flatMapCompletable { Completable.complete() }
     }
 }
