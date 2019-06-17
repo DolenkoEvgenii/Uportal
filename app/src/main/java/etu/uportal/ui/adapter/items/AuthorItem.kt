@@ -9,10 +9,11 @@ import etu.uportal.Screens
 import etu.uportal.model.data.Author
 import etu.uportal.utils.helpers.click
 import etu.uportal.utils.helpers.getString
+import etu.uportal.utils.helpers.longClick
 import kotlinx.android.synthetic.main.card_author.*
 import kotlinx.android.synthetic.main.card_author.view.*
 
-open class AuthorItem(val author: Author) : Item() {
+open class AuthorItem(val author: Author, private val listener: OnAuthorClickListener) : Item() {
 
     @SuppressLint("SetTextI18n")
     override fun bind(viewHolder: ViewHolder, position: Int) {
@@ -22,7 +23,16 @@ open class AuthorItem(val author: Author) : Item() {
         viewHolder.itemView.vAuthorCard.click {
             App.component.router().navigateTo(Screens.AuthorDetailedFragmentScreen(author).apply { inNewActivity = true })
         }
+
+        viewHolder.itemView.vAuthorCard.longClick {
+            listener.onLongClick(author)
+            return@longClick true
+        }
     }
 
     override fun getLayout(): Int = R.layout.card_author
+
+    interface OnAuthorClickListener {
+        fun onLongClick(author: Author)
+    }
 }

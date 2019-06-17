@@ -9,9 +9,7 @@ import etu.uportal.model.navigator.BaseAppScreen
 import etu.uportal.ui.activity.auth.AuthActivity
 import etu.uportal.ui.activity.menu.MenuActivity
 import etu.uportal.ui.fragment.auth.LoginFragment
-import etu.uportal.ui.fragment.author.AuthorDetailedFragment
-import etu.uportal.ui.fragment.author.AuthorListFragment
-import etu.uportal.ui.fragment.author.SelectAuthorsFragment
+import etu.uportal.ui.fragment.author.*
 import etu.uportal.ui.fragment.publication.CreatePublicationFragment
 import etu.uportal.ui.fragment.publication.EditPublicationFragment
 import etu.uportal.ui.fragment.publication.PublicationDetailedFragment
@@ -84,6 +82,18 @@ object Screens {
     class EditPublicationFragmentScreen(val publication: Publication) : BaseAppScreen(), Serializable {
         override fun getFragment(): Fragment {
             return EditPublicationFragment.newInstance(publication)
+        }
+    }
+
+    class CreateAuthorFragmentScreen : BaseAppScreen(), Serializable {
+        override fun getFragment(): Fragment {
+            return CreateAuthorFragment.newInstance()
+        }
+    }
+
+    class EditAuthorFragmentScreen(val author: Author) : BaseAppScreen(), Serializable {
+        override fun getFragment(): Fragment {
+            return EditAuthorFragment.newInstance(author)
         }
     }
 }

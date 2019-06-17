@@ -12,6 +12,8 @@ import etu.uportal.model.network.content.ContentRepository
 import etu.uportal.presentation.presenter.SimplePresenter
 import etu.uportal.presentation.presenter.auth.LoginPresenter
 import etu.uportal.presentation.presenter.author.AuthorListPresenter
+import etu.uportal.presentation.presenter.author.CreateAuthorPresenter
+import etu.uportal.presentation.presenter.author.EditAuthorPresenter
 import etu.uportal.presentation.presenter.author.SelectAuthorPresenter
 import etu.uportal.presentation.presenter.menu.MenuPresenter
 import etu.uportal.presentation.presenter.publication.CreatePublicationPresenter
@@ -55,4 +57,8 @@ interface AppComponent {
     fun inject(presenter: CreatePublicationPresenter)
 
     fun inject(presenter: EditPublicationPresenter)
+
+    fun inject(presenter: CreateAuthorPresenter)
+
+    fun inject(presenter: EditAuthorPresenter)
 }

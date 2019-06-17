@@ -11,6 +11,7 @@ import etu.uportal.model.network.content.ContentRepository
 import etu.uportal.presentation.presenter.BasePresenter
 import etu.uportal.presentation.view.publication.CreatePublicationView
 import etu.uportal.utils.helpers.showErrorToast
+import etu.uportal.utils.helpers.showSuccessToast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
@@ -65,6 +66,7 @@ class CreatePublicationPresenter : BasePresenter<CreatePublicationView>() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    showSuccessToast(R.string.successfully)
                     EventBus.getDefault().post(PublicationUpdateEvent())
                     viewState.closeLoadingDialog()
                     router.exit()

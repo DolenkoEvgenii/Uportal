@@ -46,7 +46,7 @@ class EditPublicationFragment : BaseMvpFragment(), EditPublicationView {
         btAddField.click(this) { addExtraFields() }
 
         btPublicationAction.setText(R.string.update_publication)
-        btPublicationAction.click(this) { createPublication() }
+        btPublicationAction.click(this) { editPublication() }
     }
 
     override fun showPickedAuthors(authors: List<String>) {
@@ -57,7 +57,7 @@ class EditPublicationFragment : BaseMvpFragment(), EditPublicationView {
         }
     }
 
-    private fun createPublication() {
+    private fun editPublication() {
         val title = etTitle.text.toString()
         val description = etDescription.text.toString()
 

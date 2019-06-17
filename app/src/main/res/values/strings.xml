@@ -45,4 +45,21 @@
     <string name="author_validation_error">Не выбрано ни олного автора</string>
     <string name="fields_validation_error">Не все дополнительные поля заполнены</string>
     <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+
+    <string name="name_validation_error">Имя слишком короткое</string>
+    <string name="lastname_validation_error">Фамилия слишком короткая</string>
+
+    <string name="create_author">Создать автора</string>
+    <string name="update_author">Обновить автора</string>
+
+    <string name="firstname">Имя</string>
+    <string name="firstname_en">Имя (англ.)</string>
+    <string name="lastname">Фамилия</string>
+    <string name="lastname_en">Фамилия (англ.)</string>
+    <string name="middlename">Отчество</string>
+    <string name="middlename_en">Отчество (англ.)</string>
+
+    <string name="successfully">Успешно</string>
+    <string name="cant_delete_author">Этого автора удалить нельзя</string>
 </resources>

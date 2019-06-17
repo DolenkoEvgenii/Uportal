@@ -4,6 +4,8 @@ import java.io.Serializable
 
 
 data class Author(
+        val allowDelete: Boolean,
+        val fields: List<AuthorField>,
         val firstName: String,
         val firstNameEn: String,
         val id: Int,

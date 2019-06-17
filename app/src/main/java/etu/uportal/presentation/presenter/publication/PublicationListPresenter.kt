@@ -2,6 +2,7 @@ package etu.uportal.presentation.presenter.publication
 
 import com.arellomobile.mvp.InjectViewState
 import etu.uportal.App
+import etu.uportal.R
 import etu.uportal.Screens
 import etu.uportal.model.data.Publication
 import etu.uportal.model.event.PublicationUpdateEvent
@@ -10,6 +11,7 @@ import etu.uportal.model.network.content.ContentRepository
 import etu.uportal.presentation.presenter.BasePresenter
 import etu.uportal.presentation.view.publication.PublicationListView
 import etu.uportal.utils.helpers.showErrorToast
+import etu.uportal.utils.helpers.showSuccessToast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
@@ -43,6 +45,10 @@ class PublicationListPresenter : BasePresenter<PublicationListView>() {
 
     fun onPublicationEditClick(publication: Publication) {
         router.navigateTo(Screens.EditPublicationFragmentScreen(publication).apply { inNewActivity = true })
+    }
+
+    fun onPublicationDeleteClick(publication: Publication) {
+        deletePublication(publication.id)
     }
 
     fun onSearch(query: String) {
@@ -100,8 +106,24 @@ class PublicationListPresenter : BasePresenter<PublicationListView>() {
                 }))
     }
 
+    private fun deletePublication(publicationId: Int) {
+        viewState.showLoadingDialog()
+
+        unsubscribeOnDestroy(contentRepository
+                .deletePublication(publicationId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    showSuccessToast(R.string.successfully)
+                    onRefresh()
+                }, {
+                    viewState.closeLoadingDialog()
+                    showErrorToast(it.localizedMessage)
+                }))
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onUpdateEveng(event: PublicationUpdateEvent) {
+    fun onUpdateEvent(event: PublicationUpdateEvent) {
         onRefresh()
     }
 

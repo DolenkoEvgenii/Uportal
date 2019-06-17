@@ -73,8 +73,11 @@ class PublicationListFragment : BaseMvpFragment(), PublicationListView, Publicat
         val context = context ?: return
 
         MaterialDialog(context).show {
-            listItems(items = listOf(getString(R.string.edit))) { dialog, index, text ->
-                presenter.onPublicationEditClick(publication)
+            listItems(items = listOf(getString(R.string.edit), getString(R.string.delete))) { dialog, index, text ->
+                when (index) {
+                    0 -> presenter.onPublicationEditClick(publication)
+                    1 -> presenter.onPublicationDeleteClick(publication)
+                }
             }
         }
     }
